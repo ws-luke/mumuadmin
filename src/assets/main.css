@@ -1,0 +1,40 @@
+* {
+  font-family: 'Noto Sans TC', '微軟正黑體', 'Arial', sans-serif;
+}
+.logo {
+  height: 25px;
+}
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.accordion-button:not(.collapsed) {
+  background-color: #fff;
+  color: #000;
+}
+.accordion-button:focus {
+  box-shadow: none;
+}
+.card {
+  box-shadow:
+    0 0 2px rgba(145, 158, 171, 0.2),
+    0 12px 24px -4px rgba(145, 158, 171, 0.12);
+  border-radius: 1rem;
+  border: 0;
+}
+.table > :not(caption) > * > * {
+  padding: 0.9rem 1.5rem;
+}
+
+.table .productImg {
+  width: 3rem;
+  height: 3rem;
+}
+.card-img-top img{
+  transform: scale(1);
+  transition: ease-in-out .3s;
+}
+a:hover .card-img-top img{
+  transform: scale(1.1);
+  transition: ease-in-out .3s;
+}
