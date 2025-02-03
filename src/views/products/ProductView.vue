@@ -3,6 +3,8 @@ import ToastNotification from '@/components/ToastNotification.vue';
 import { ref , onMounted } from 'vue';
 import axios from 'axios';
 import { useRoute, useRouter } from 'vue-router';
+import Quill from 'quill';
+import 'quill/dist/quill.snow.css';
 const api = import.meta.env.VITE_API_URL;
 
 const router = useRouter();
@@ -17,6 +19,8 @@ const productVariants = ref([]); // 定義變數 productVariants，初始值為�
 const categoryData = ref([]); // 存放類別資料
 const subcategories = ref([]); // 存放子類別資料
 const toast = ref(null); // 彈窗訊息
+const editor = ref(null); //商品描述
+let quill;
 
 // 最主要資料處存區
 const product = ref({
@@ -34,8 +38,15 @@ const product = ref({
   subcategory: '', // 子分類
   imageUrl: '',
   imagesUrl: [''],
-  productVariants
+  productVariants,
+  description: ''
 })
+// 取得文字編輯器內容，並存進product主要資料區
+const handleSubmit = () => {
+  const description = quill.root.innerHTML; // 取得文字編輯器內容
+  product.value.description = description; 
+  // console.log('商品描述:', description);
+};
 
 // 產品類別
 const fetchCategories = async () => {
@@ -81,6 +92,7 @@ const removeRow = (index) => {
 // 新增產品
 const createProduct = async () => {
   try {
+    await handleSubmit();
     const response = await axios.post(`${api}/products/product`, product.value);
 
     // 從後端的回應中提取訊息
@@ -102,6 +114,7 @@ const createProduct = async () => {
 // 編輯產品
 const editProduct = async (id) => {
   try {
+    await handleSubmit();
     const response = await axios.put(`${api}/products/product/${id}`, product.value);
 
     // 從後端的回應中提取訊息
@@ -136,8 +149,10 @@ onMounted ( async () => {
       console.error('無法載入產品資料', error);
     }
   }
+  quill = new Quill(editor.value, {
+    theme: 'snow', // Quill 的預設主題
+  });
 })
-
 </script>
 
 <template>
@@ -196,6 +211,10 @@ onMounted ( async () => {
               <div class="mb-3 col-lg-6">
                 <label class="form-label" for="productUnit">單位</label
                 ><input class="form-control" type="text" id="productUnit" v-model="product.unit"  />
+              </div>
+              <div class="col-12">
+                <label class="form-label">商品描述</label>
+                <div class="mb-3 h-auto" ref="editor"></div>
               </div>
             </div>
           </div>
