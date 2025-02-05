@@ -37,6 +37,11 @@ const router = createRouter({
           component: () => import('@/views/uploadView.vue'),
         },
         {
+          path: '/admin/carousel', // 輪播圖
+          name: 'carousel',
+          component: () => import('@/views/images/CarouselView.vue'),
+        },
+        {
           path: '/admin/orders', // 訂單列表
           name: 'orders',
           component: () => import('@/views/orders/OrdersView.vue'),

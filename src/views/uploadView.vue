@@ -75,7 +75,7 @@ const copyToClipboard = () => {
       </div>
     </div>
     <div class="row">
-      <div class="col-8">
+      <div class="col">
           <label class="form-label">圖片網址:</label>
           <input type="text" class="form-control" v-model="url">
           <button @click="copyToClipboard" class="btn btn-secondary mt-2">複製網址</button>
