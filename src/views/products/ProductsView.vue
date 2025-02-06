@@ -223,7 +223,9 @@ onMounted(async () => {
                   <th colspan="1">產品名稱</th>
                   <th colspan="1">類別</th>
                   <th colspan="1">狀態</th>
-                  <th colspan="1">價格</th>
+                  <th colspan="1">批發價</th>
+                  <th colspan="1">最低價</th>
+                  <th colspan="1">終端售價</th>
                   <th colspan="1">上架日期</th>
                   <th colspan="1"></th>
                 </tr>
@@ -259,6 +261,8 @@ onMounted(async () => {
                     >
                   </td>
                   <td>{{ product.price }}</td>
+                  <td>{{ product.origin_price }}</td>
+                  <td>{{ product.retail_Price }}</td>
                   <td>{{ product.createdAt }}</td>
                   <td>
                     <div class="dropdown">

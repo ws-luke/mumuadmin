@@ -149,8 +149,18 @@ onMounted ( async () => {
       console.error('無法載入產品資料', error);
     }
   }
+  // 初始化 Quill 編輯器
   quill = new Quill(editor.value, {
     theme: 'snow', // Quill 的預設主題
+  });
+  // **將已有的商品描述填入 Quill 編輯器**
+  if (product.value.description) {
+    quill.root.innerHTML = product.value.description;
+  }
+
+  // **監聽 Quill 內容變化，及時更新 product.description**
+  quill.on('text-change', () => {
+    product.value.description = quill.root.innerHTML;
   });
 })
 </script>
