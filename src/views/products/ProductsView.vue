@@ -12,7 +12,6 @@ const pagination = ref({}) // 分頁資料
 const categories = ref([]) // 類別資料
 const selectedCategory = ref('') // 選擇的類別
 const searchQuery = ref('') // 搜尋關鍵字
-const loadedImages = ref({}) // 用於追蹤每個圖片是否載入完成
 // 取得商品列表，並傳遞分頁和搜尋參數
 const getProducts = async (
   page = 1,
@@ -35,10 +34,7 @@ const getProducts = async (
   }
 }
 
-// 當圖片成功載入後，更新 `loadedImages` 狀態
-const onImageLoad = productId => {
-  loadedImages.value[productId] = true
-}
+
 // 編輯商品
 const editProduct = id => {
   router.push(`/admin/product/${id}`)
@@ -236,12 +232,6 @@ onMounted(async () => {
                     <input class="form-check-input" type="checkbox" />
                   </td>
                   <td>
-                    <div
-                      v-if="!loadedImages[product.id]"
-                      class="productImg bg-light placeholder-glow"
-                    >
-                      <span class="placeholder w-100 h-100"></span>
-                    </div>
                     <img
                       class="productImg"
                       :src="product.imageUrl"
