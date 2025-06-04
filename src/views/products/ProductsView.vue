@@ -219,6 +219,7 @@ onMounted(async () => {
                   <th colspan="1">產品名稱</th>
                   <th colspan="1">類別</th>
                   <th colspan="1">狀態</th>
+                  <th colspan="1">買斷價</th>
                   <th colspan="1">批發價</th>
                   <th colspan="1">最低價</th>
                   <th colspan="1">終端售價</th>
@@ -236,7 +237,6 @@ onMounted(async () => {
                       class="productImg"
                       :src="product.imageUrl"
                       :alt="product.title"
-                      @load="onImageLoad(product.id)"
                     />
                   </td>
                   <td>{{ product.title }}</td>
@@ -250,6 +250,7 @@ onMounted(async () => {
                       >{{ product.is_enabled ? '已上架' : '未上架' }}</span
                     >
                   </td>
+                  <td>{{ product.buyout_price }}</td>
                   <td>{{ product.price }}</td>
                   <td>{{ product.origin_price }}</td>
                   <td>{{ product.retail_Price }}</td>

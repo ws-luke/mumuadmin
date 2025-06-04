@@ -31,6 +31,7 @@ const product = ref({
   retail_Price: '', // 終端售價
   origin_price: '', // 最低終端售價
   price: '', // 批發價
+  buyout_price: '', // 買斷價
   unit: '', // 單位
   is_enabled: '', // 是否上架
   is_stock: '', // 庫存
@@ -375,6 +376,10 @@ onMounted ( async () => {
             <div class="mb-3">
               <label class="form-label" for="productPrice">批發價</label>
               <input class="form-control" id="productPrice" type="number" v-model="product.price" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="buyoutPrice">買斷價</label>
+              <input class="form-control" id="buyoutPrice" type="number" v-model="product.buyout_price" />
             </div>
           </div>
         </div>
